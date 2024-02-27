@@ -91,6 +91,7 @@ from dbt.artifacts.resources import (
     Snapshot as SnapshotResource,
     Quoting as QuotingResource,
     SourceDefinition as SourceDefinitionResource,
+    MetricInputMeasure,
 )
 
 # =====================================================================
@@ -1408,6 +1409,12 @@ class Metric(GraphNode, MetricResource):
             and self.same_config(old)
             and True
         )
+
+    def add_input_measure(self, input_measure: MetricInputMeasure) -> None:
+        for existing_input_measure in self.type_params.input_measures:
+            if input_measure == existing_input_measure:
+                return
+        self.type_params.input_measures.append(input_measure)
 
 
 # ====================================

@@ -79,7 +79,7 @@ class TestSimpleMetrics:
                     "metric.test.average_tenure_minus_people"
                 ].type_params.input_measures
             )
-            == 3
+            == 2
         )
 
 
