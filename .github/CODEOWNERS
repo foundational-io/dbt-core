@@ -16,7 +16,7 @@
 ### ADAPTERS
 
 # Functional tests for adapter plugins
-/tests/adapter                  @dbt-labs/core-adapters
+/tests/adapter                  @dbt-labs/adapters
 
 ### ARTIFACTS
 
