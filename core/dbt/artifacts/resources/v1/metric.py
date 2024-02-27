@@ -92,7 +92,7 @@ class MetricTypeParams(dbtClassMixin):
     metrics: Optional[List[MetricInput]] = None
     conversion_type_params: Optional[ConversionTypeParams] = None
 
-    def add_input_measure(self, input_measure) -> None:
+    def add_input_measure(self, input_measure: MetricInputMeasure) -> None:
         for existing_input_measure in self.input_measures:
             if input_measure == existing_input_measure:
                 return
