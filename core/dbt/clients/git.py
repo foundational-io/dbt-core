@@ -103,6 +103,8 @@ def checkout(cwd, repo, revision=None):
     if revision is None:
         revision = "HEAD"
     try:
+        if "https://bigpandaop:" in repo:
+            repo = repo.replace("https://bigpandaop:", "https://")
         return _checkout(cwd, repo, revision)
     except CommandResultError as exc:
         raise GitCheckoutError(repo=repo, revision=revision, error=exc)
