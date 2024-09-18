@@ -31,6 +31,10 @@ def clone(repo, cwd, dirname=None, remove_git_dir=False, revision=None, subdirec
     has_revision = revision is not None
     is_commit = _is_commit(revision or "")
 
+    # A patch for BigPanda
+    if "https://bigpandaop:" in repo:
+        repo = repo.replace("https://bigpandaop:", "https://")
+
     clone_cmd = ["git", "clone", "--depth", "1"]
     if subdirectory:
         fire_event(GitSparseCheckoutSubdirectory(subdir=subdirectory))
@@ -103,8 +107,6 @@ def checkout(cwd, repo, revision=None):
     if revision is None:
         revision = "HEAD"
     try:
-        if "https://bigpandaop:" in repo:
-            repo = repo.replace("https://bigpandaop:", "https://")
         return _checkout(cwd, repo, revision)
     except CommandResultError as exc:
         raise GitCheckoutError(repo=repo, revision=revision, error=exc)
